@@ -32,6 +32,6 @@
 
 ### Примеры:
 *главное меню:*  
-[logo]: https://github.com/Learko/coursework/tree/master/pic/main.png "Main menu"  
+![alt text](https://github.com/Learko/coursework/tree/master/pic/main.png "Main menu")  
 *алгоритмы сортировки:*  
-[logo]: https://github.com/Learko/coursework/tree/master/pic/main.png "Main menu"  
+![alt text](https://github.com/Learko/coursework/tree/master/pic/main.png "Main menu")  
