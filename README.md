@@ -31,5 +31,7 @@
 Для экстренного выхода из программы нажмите Ctrl+C  
 
 ### Примеры:
-*(главное меню)*  
-[logo]: https://github.com/Learko/coursework/pic/main.png "Main menu"
+*главное меню:*  
+[logo]: https://github.com/Learko/coursework/tree/master/pic/main.png "Main menu"  
+*алгоритмы сортировки:*  
+[logo]: https://github.com/Learko/coursework/tree/master/pic/main.png "Main menu"  
