@@ -32,4 +32,4 @@
 
 ### Примеры:
 *(главное меню)*  
-[logo]:(https://github.com/Learko/coursework/pic/main.png)
+[logo]: https://github.com/Learko/coursework/pic/main.png "Main menu"
