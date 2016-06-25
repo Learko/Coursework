@@ -29,7 +29,7 @@
 ![alt text](https://raw.githubusercontent.com/Learko/coursework/master/pic/sort.png "Sort menu")  
 *алгоритмы поиска подстроки в строке:*  
 ![alt text](https://raw.githubusercontent.com/Learko/coursework/master/pic/search.png "String search menu")  
-*структуры данных:*
+*структуры данных:*  
 ![alt text](https://raw.githubusercontent.com/Learko/coursework/master/pic/dataStruct.png "Data structures menu")  
 - *стек:*  
 ![alt text](https://raw.githubusercontent.com/Learko/coursework/master/pic/stack.png "Stack")  
