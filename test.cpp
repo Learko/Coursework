@@ -28,13 +28,13 @@
 using namespace std;
 
 
-// РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ Р°Р»РіРѕСЂРёС‚РјРѕРІ СЃРѕСЂС‚РёСЂРѕРІРєРё
+// Тестирование алгоритмов сортировки
 void testSort()
 {
-	SetConsoleTitle("TEST: Sorting Algorithms"); // Р—Р°РіРѕР»РѕРІРѕРє РѕРєРЅР°
-	system("cls"); // РћС‡РёСЃС‚РєР° СЌРєСЂР°РЅР°
+	SetConsoleTitle("TEST: Sorting Algorithms"); // Заголовок окна
+	system("cls"); // Очистка экрана
 
-	// РЎРѕРѕР±С‰РµРЅРёРµ СЃ РїРѕРґСЃРєР°Р·РєРѕР№
+	// Сообщение с подсказкой
 	const char *helpMsg = "Help message:\n\
 	0 - Bubble Sort\n\
 	1 - Shell Sort\n\
@@ -44,62 +44,62 @@ void testSort()
 	q - Back to Main menu";
 
 
-	char action = NULL; // Р”РµР№СЃС‚РІРёРµ
+	char action = NULL; // Действие
 
-	while (action != 'q') // РџРѕРєР° РЅРµ РІРІРµР»Рё q
+	while (action != 'q') // Пока не ввели q
 	{
 		switch (action)
 		{
-		case '0': // РЎРѕСЂС‚РёСЂРѕРІРєР° РїСѓР·С‹СЂСЊРєРѕРј
+		case '0': // Сортировка пузырьком
 			sortWrap(bubbleSort); 
 			break;
-		case '1': // РЎРѕСЂС‚РёСЂРѕРІРєР° РЁРµР»Р»Р°
+		case '1': // Сортировка Шелла
 			sortWrap(shellSort);
 			break;
-		case '2': // Р‘С‹СЃС‚СЂР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°
+		case '2': // Быстрая сортировка
 			sortWrap([](int *arr, int length) { quickSort(arr, length, 0); });
 			break;
-		case '3': // РџРѕСЂР°Р·СЂСЏРґРЅР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°
+		case '3': // Поразрядная сортировка
 			sortWrap(radixSort);
 			break;
-		case '4': // РџРёСЂР°РјРёРґР°Р»СЊРЅР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°
+		case '4': // Пирамидальная сортировка
 			sortWrap(heapSort);
 			break;
-		default: // РќРёС‡РµРіРѕ РёР· РІС‹С€Рµ РїРµСЂРµС‡РёСЃР»РµРЅРЅРѕРіРѕ
-			cout << helpMsg; // Р’С‹РІРµСЃС‚Рё СЃРѕРѕР±С‰РµРЅРёРµ СЃ РїРѕРґСЃРєР°Р·РєРѕР№
+		default: // Ничего из выше перечисленного
+			cout << helpMsg; // Вывести сообщение с подсказкой
 		}
 
-		while (cin.get() != '\n'); // РћС‡РёСЃС‚РєР° РїРѕС‚РѕРєР° РІРІРѕРґР°
+		while (cin.get() != '\n'); // Очистка потока ввода
 		cout << endl << endl << "Select: ";
-		cin >> action; // РЎС‡РёС‚С‹РІР°РЅРёРµ РґРµР№СЃС‚РІРёСЏ
+		cin >> action; // Считывание действия
 	}
 }
 
-/* РћР±РµСЂС‚РєР° РґР»СЏ С„СѓРЅРєС†РёРё СЃРѕСЂС‚РёСЂРѕРІРєРё (РґРµРєРѕСЂР°С‚РѕСЂ)
- * РџСЂРёРЅРёРјР°РµС‚ Р°Р»РіРѕСЂРёС‚Рј (С„-СЋ СЃРѕСЂС‚РёСЂРѕРІРєРё)         */
+/* Обертка для функции сортировки (декоратор)
+ * Принимает алгоритм (ф-ю сортировки)         */
 void sortWrap(void sort(int *, int))
 {
-	int length; // РљРѕР»-РІРѕ СЌР»-РІ
+	int length; // Кол-во эл-в
 	cout << "Number of elements: ";
 	cin >> length;
 
 	cout << "Your array: ";
-	int *arr = inputArray(length); // Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ РјР°СЃСЃРёРІР°
+	int *arr = inputArray(length); // Формирование массива
 
-	sort(arr, length); // РЎРѕСЂС‚РёСЂРѕРІРєР° РјР°СЃСЃРёРІР° РїРµСЂРµРґР°РЅРЅС‹Рј РјРµС‚РѕРґРѕРј
+	sort(arr, length); // Сортировка массива переданным методом
 
 	cout << "Sorted array: ";
-	printArray(arr, length); // Р’С‹РІРѕРґ РјР°СЃСЃРёРІР° С‡РµСЂРµР· РїСЂРѕР±РµР»
+	printArray(arr, length); // Вывод массива через пробел
 }
 
 
-// РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ Р°Р»РіРѕСЂРёС‚РјРѕРІ РїРѕРёСЃРєР° РїРѕРґСЃС‚СЂРѕРєРё РІ СЃС‚СЂРѕРєРµ
+// Тестирование алгоритмов поиска подстроки в строке
 void testStringSearch()
 {
-	SetConsoleTitle("TEST: String Search algorithms"); // Р—Р°РіРѕР»РѕРІРѕРє РєРѕРЅСЃРѕР»Рё
-	system("cls"); // РћС‡РёСЃС‚РєР° СЌРєСЂР°РЅР°
+	SetConsoleTitle("TEST: String Search algorithms"); // Заголовок консоли
+	system("cls"); // Очистка экрана
 
-	// РЎРѕРѕР±С‰РµРЅРёРµ СЃ РїРѕРґСЃРєР°Р·РєРѕР№
+	// Сообщение с подсказкой
 	const char *helpMsg = "Help message:\n\
 	0 - Knuth-Morris-Pratt string searching algorithm\n\
 	1 - Boyer-Moore string search algorithm\n\
@@ -107,60 +107,63 @@ void testStringSearch()
 	q - Back to Main menu";
 
 
-	char action = NULL; // Р”РµР№СЃС‚РІРёРµ
+	char action = NULL; // Действие
 
-	while (action != 'q') // РџРѕРєР° РЅРµ РІРІРµР»Рё q
+	while (action != 'q') // Пока не ввели q
 	{
 		switch (action)
 		{
-		case '0': // РђР»РіРѕСЂРёС‚Рј РљРЅСѓС‚Р°-РњРѕСЂСЂРёСЃР°-РџСЂР°С‚С‚Р°
+		case '0': // Алгоритм Кнута-Морриса-Пратта
 			stringSearchWrap(kmp);
 			break;
-		case '1': // РђР»РіРѕСЂРёС‚Рј Р‘РѕР№РµСЂР°-РњСѓСЂР°
+		case '1': // Алгоритм Бойера-Мура
 			stringSearchWrap(boyerMoore);
 			break;
-		case '2': // РђР»РіРѕСЂРёС‚Рј Р Р°Р±РёРЅР°-РљР°СЂРїР°
+		case '2': // Алгоритм Рабина-Карпа
 			stringSearchWrap(rabinKarp);
 			break;
-		default: // РќРёС‡РµРіРѕ РёР· РІС‹С€Рµ РїРµСЂРµС‡РёСЃР»РµРЅРЅРѕРіРѕ
-			cout << helpMsg; // Р’С‹РІРѕРґ СЃРѕРѕР±С‰РµРЅРёСЏ СЃ РїРѕРґСЃРєР°Р·РєРѕР№
+		default: // Ничего из выше перечисленного
+			cout << helpMsg; // Вывод сообщения с подсказкой
 		}
 
 		cout << endl << endl << "Select: ";
-		cin >> action; // РЎС‡РёС‚С‹РІР°РЅРёРµ РґРµР№СЃС‚РІРёСЏ
-		while (cin.get() != '\n'); // РћС‡РёСЃС‚РєР° РїРѕС‚РѕРєР° РІРІРѕРґР°
+		cin >> action; // Считывание действия
+		while (cin.get() != '\n'); // Очистка потока ввода
 	}
 }
 
-/* РћР±РµСЂС‚РєР° РґР»СЏ С„СѓРЅРєС†РёРё РїРѕРёСЃРєР° РїРѕРґСЃС‚СЂРѕРєРё РІ СЃС‚СЂРѕРєРµ (РґРµРєРѕСЂР°С‚РѕСЂ)
- * РџСЂРёРЅРёРјР°РµС‚ Р°Р»РіРѕСЂРёС‚Рј (С„-СЋ РїРѕРёСЃРєР°)                            */
-void stringSearchWrap(List searchFunc(char *, char *))
+/* Обертка для функции поиска подстроки в строке (декоратор)
+ * Принимает алгоритм (ф-ю поиска)                            */
+void stringSearchWrap(List *searchFunc(char *, char *))
 {
-	char haystack[255]; // РЎС‚СЂРѕРєР°
-	char needle[255];   // РЁР°Р±Р»РѕРЅ
+	char haystack[255]; // Строка
+	char needle[255];   // Шаблон
 
 	cout << "string: ";
-	cin.getline(haystack, 255); // РЎС‡РёС‚С‹РІР°РµРј СЃС‚СЂРѕРєСѓ
+	cin.getline(haystack, 255); // Считываем строку
 	cout << "template: ";
-	cin.getline(needle, 255);   // РЎС‡РёС‚С‹РІР°РµРј С€Р°Р±Р»РѕРЅ
+	cin.getline(needle, 255);   // Считываем шаблон
 
-	// РџРѕРёСЃРє РїРѕРґСЃС‚СЂРѕРєРё РІ СЃС‚СЂРѕРєРµ РїРµСЂРµРґР°РЅРЅС‹Рј Р°Р»РіРѕСЂРёС‚РјРѕРј
-	List entry = searchFunc(haystack, needle);
+	// Поиск подстроки в строке переданным алгоритмом
+	List *entry = searchFunc(haystack, needle);
 
-	// РРЅРґРµРєСЃС‹ РІСЃРµС… РІС…РѕР¶РґРµРЅРёР№ С‡РµСЂРµР· РїСЂРѕР±РµР»
+	// Индексы всех вхождений через пробел
 	cout << "Entry: ";
-	for (const auto &en : entry)
-		cout << *en.data << ' ';
+	if (entry->len() != 0)
+		for (const auto &en : *entry)
+			cout << *en.data << ' ';
+	else
+		cout << "Empty";
 }
 
 
-// РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РЎС‚СЂСѓРєС‚СѓСЂ РґР°РЅРЅС‹С…
+// Тестирование Структур данных
 void testDataStruct()
 {
-	SetConsoleTitle("TEST: Data structures"); // Р—Р°РіРѕР»РѕРІРѕРє РєРѕРЅСЃРѕР»Рё
-	system("cls"); // РћС‡РёСЃС‚РєР° СЌРєСЂР°РЅР°
+	SetConsoleTitle("TEST: Data structures"); // Заголовок консоли
+	system("cls"); // Очистка экрана
 	
-	// РЎРѕРѕР±С‰РµРЅРёРµ СЃ РїРѕРґСЃРєР°Р·РєРѕР№
+	// Сообщение с подсказкой
 	const char *helpMsg = "Help message:\n\
 	0 - Stack\n\
 	1 - Queue\n\
@@ -169,70 +172,70 @@ void testDataStruct()
 	q - Back to Main menu";
 
 
-	char action = NULL; // Р”РµР№СЃС‚РІРёРµ
+	char action = NULL; // Действие
 
-	while (action != 'q') // РџРѕРєР° РЅРµ СЂР°РІРЅРѕ q (Р·Р°РІРµСЂС€РµРЅРёРµ)
+	while (action != 'q') // Пока не равно q (завершение)
 	{
 		switch (action)
 		{
-		case '0': // РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РЎС‚РµРєР°
-			SetConsoleTitle("TEST: Data structures: Stack"); // РќРѕРІС‹Р№ Р·Р°РіРѕР»РѕРІРѕРє
-			system("cls"); // РћС‡РёСЃС‚РєР° РєРѕРЅСЃРѕР»Рё
+		case '0': // Тестирование Стека
+			SetConsoleTitle("TEST: Data structures: Stack"); // Новый заголовок
+			system("cls"); // Очистка консоли
 
-			testStack(); // РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РѕС‡РµСЂРµРґРё
+			testStack(); // Тестирование очереди
 
-			SetConsoleTitle("TEST: Data structures"); // Р’РѕР·РІСЂР°С‰Р°РµРј Р·Р°РіРѕР»РѕРІРѕРє
-			system("cls"); // РћС‡РёСЃС‚РєР° РєРѕРЅСЃРѕР»Рё
+			SetConsoleTitle("TEST: Data structures"); // Возвращаем заголовок
+			system("cls"); // Очистка консоли
 
-			cout << helpMsg; // РЎРѕРѕР±С‰РµРЅРёРµ СЃ РїРѕРґСЃРєР°Р·РєРѕР№
+			cout << helpMsg; // Сообщение с подсказкой
 			break;
-		case '1': // РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РћС‡РµСЂРµРґРё
-			SetConsoleTitle("TEST: Data structures: Queue"); // РќРѕРІС‹Р№ Р·Р°РіРѕР»РѕРІРѕРє
-			system("cls"); // РћС‡РёСЃС‚РєР° РєРѕРЅСЃРѕР»Рё
+		case '1': // Тестирование Очереди
+			SetConsoleTitle("TEST: Data structures: Queue"); // Новый заголовок
+			system("cls"); // Очистка консоли
 
-			testQueue(); // РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РћС‡РµСЂРµРґРё
+			testQueue(); // Тестирование Очереди
 
-			SetConsoleTitle("TEST: Data structures"); // Р’РѕР·РІСЂР°С‰Р°РµРј Р·Р°РіРѕР»РѕРІРѕРє
-			system("cls"); // РћС‡РёСЃС‚РєР° РєРѕРЅСЃРѕР»Рё
+			SetConsoleTitle("TEST: Data structures"); // Возвращаем заголовок
+			system("cls"); // Очистка консоли
 
-			cout << helpMsg; // РЎРѕРѕР±С‰РµРЅРёРµ СЃ РїРѕРґСЃРєР°Р·РєРѕР№
+			cout << helpMsg; // Сообщение с подсказкой
 			break;
-		case '2': // РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ Р”РµРєР°
-			SetConsoleTitle("TEST: Data structures: Deque"); // РќРѕРІС‹Р№ Р·Р°РіРѕР»РѕРІРѕРє
-			system("cls"); // РћС‡РёСЃС‚РєР° РєРѕРЅСЃРѕР»Рё
+		case '2': // Тестирование Дека
+			SetConsoleTitle("TEST: Data structures: Deque"); // Новый заголовок
+			system("cls"); // Очистка консоли
 
-			testDeque(); // РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ Р”РµРєР°
+			testDeque(); // Тестирование Дека
 
-			SetConsoleTitle("TEST: Data structures"); // Р’РѕР·РІСЂР°С‰Р°РµРј Р·Р°РіРѕР»РѕРІРѕРє
-			system("cls"); // РћС‡РёСЃС‚РєР° РєРѕРЅСЃРѕР»Рё
+			SetConsoleTitle("TEST: Data structures"); // Возвращаем заголовок
+			system("cls"); // Очистка консоли
 
-			cout << helpMsg; // РЎРѕРѕР±С‰РµРЅРёРµ СЃ РїРѕРґСЃРєР°Р·РєРѕР№
+			cout << helpMsg; // Сообщение с подсказкой
 			break;
-		case '3': // РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РђР’Р›-РґРµСЂРµРІР°
-			SetConsoleTitle("TEST: Data structures: AVL-Tree"); // РќРѕРІС‹Р№ Р·Р°РіРѕР»РѕРІРѕРє
-			system("cls"); // РћС‡РёСЃС‚РєР° РєРѕРЅСЃРѕР»Рё
+		case '3': // Тестирование АВЛ-дерева
+			SetConsoleTitle("TEST: Data structures: AVL-Tree"); // Новый заголовок
+			system("cls"); // Очистка консоли
 
-			testAVLTree(); // РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РђР’Р›-РґРµСЂРµРІР°
+			testAVLTree(); // Тестирование АВЛ-дерева
 
-			SetConsoleTitle("TEST: Data structures"); // Р’РѕР·РІСЂР°С‰Р°РµРј Р·Р°РіРѕР»РѕРІРѕРє
-			system("cls"); // РћС‡РёСЃС‚РєР° РєРѕРЅСЃРѕР»Рё
+			SetConsoleTitle("TEST: Data structures"); // Возвращаем заголовок
+			system("cls"); // Очистка консоли
 
-			cout << helpMsg; // РЎРѕРѕР±С‰РµРЅРёРµ СЃ РїРѕРґСЃРєР°Р·РєРѕР№
+			cout << helpMsg; // Сообщение с подсказкой
 			break;
-		default: // РќРёС‡РµРіРѕ РёР· РІС‹С€Рµ РїРµСЂРµС‡РёСЃР»РµРЅРЅРѕРіРѕ
-			cout << helpMsg; // РЎРѕРѕР±С‰РµРЅРёРµ СЃ РїРѕРґСЃРєР°Р·РєРѕР№
+		default: // Ничего из выше перечисленного
+			cout << helpMsg; // Сообщение с подсказкой
 		}
 
 		cout << endl << endl << "Select: ";
-		cin >> action; // РЎС‡РёС‚С‹РІР°РЅРёРµ РґРµР№СЃС‚РІРёСЏ
-		cin.ignore(); // РћС‡РёСЃС‚РєР° РІРІРѕРґР° (СЃР»РµРґ Р°Р»РіРѕСЂРёС‚РјС‹ Р±СѓРґСѓС‚ СЃС‡РёС‚С‹РІР°С‚СЊ СЃС‚СЂРѕРєСѓ (РґРѕ \n))
+		cin >> action; // Считывание действия
+		cin.ignore(); // Очистка ввода (след алгоритмы будут считывать строку (до \n))
 	}
 }
 
-// РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РЎС‚РµРєР°
+// Тестирование Стека
 void testStack()
 {
-	// РЎРѕРѕР±С‰РµРЅРёРµ СЃ РїРѕРґСЃРєР°Р·РєРѕР№
+	// Сообщение с подсказкой
 	const char *helpMsg = "Help message:\n\
 	push N    - put N at the top of the Stack\n\
 	peek      - Element at the top of the Stack\n\
@@ -242,50 +245,50 @@ void testStack()
 	h or help - Show this message again\n\
 	q or quit - Back to Data struct menu";
 
-	Stack<int> stack; // РЎС‚РµРє С†РµР»С‹С… С‡РёСЃРµР»
-	string action = "h"; // Р”РµР№СЃС‚РІРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+	Stack<int> stack; // Стек целых чисел
+	string action = "h"; // Действие по умолчанию
 
-	while (action != "q" && action != "quit") // РџРѕРєР° РґРµР№СЃС‚РІРёРµ РЅРµ q РёР»Рё quit
+	while (action != "q" && action != "quit") // Пока действие не q или quit
 	{
 		try
 		{
-			if (action == "push") // push - РґРѕР±Р°РІР»РµРЅРёРµ РІ СЃС‚РµРє
+			if (action == "push") // push - добавление в стек
 			{
-				int data; // СЌР»-С‚ РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ
+				int data; // эл-т для добавления
 
 				cin >> data;
-				stack.push(data); // Р”РѕР±Р°РІР»РµРЅРёРµ СЌР»-С‚Р°
+				stack.push(data); // Добавление эл-та
 			}
-			else if (action == "peek") // peek - РџСЂРѕСЃРјРѕС‚СЂ СЌР»-С‚Р° РЅР° РІРµСЂС€РёРЅРµ СЃС‚РµРєР°
+			else if (action == "peek") // peek - Просмотр эл-та на вершине стека
 				cout << "Output: " << stack.peek() << endl;
-			else if (action == "pop") // pop - РџСЂРѕСЃРјРѕС‚СЂ Рё СѓРґР°Р»РµРЅРёРµ СЌРґ-С‚Р° РЅР° РІРµСЂС€РёРЅРµ СЃС‚РµРєР°
+			else if (action == "pop") // pop - Просмотр и удаление эд-та на вершине стека
 				cout << "Output: " << stack.pop() << endl;
-			else if (action == "clear") // clear - РѕС‡РёСЃС‚РєР° СЃС‚РµРєР°
+			else if (action == "clear") // clear - очистка стека
 				stack.clear();
-			else if (action == "len") // len - РєРѕР»-РІРѕ СЌР»-РІ РІ СЃС‚РµРєРµ
+			else if (action == "len") // len - кол-во эл-в в стеке
 				cout << "Output: " << stack.len() << endl;
-			else if (action == "h" || action == "help") // Р—Р°РїСЂРѕСЃ СЃРѕРѕР±С‰РµРЅРёСЏ СЃ РїРѕРґСЃРєР°Р·РєРѕР№
+			else if (action == "h" || action == "help") // Запрос сообщения с подсказкой
 				cout << helpMsg << endl;
-			else // РќРµРёР·РІРµСЃС‚РЅРѕРµ РґРµР№СЃС‚РІРёРµ
+			else // Неизвестное действие
 			{
-				while (cin.get() != '\n'); // РћС‡РёСЃС‚РєР° РїРѕС‚РѕРєР° РІРІРѕРґР°
+				while (cin.get() != '\n'); // Очистка потока ввода
 				cout << "Error: Unknown command. Use \"h\" or \"help\" to get help message." << endl;
 			}
 		}
-		catch (exception &e) // Р•СЃР»Рё РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР°
+		catch (exception &e) // Если возникла ошибка
 		{
 			cout << "Error: " << e.what() << endl;
 		}
 
 		cout << endl << "Input: ";
-		cin >> action; // РЎС‡РёС‚С‹РІР°РЅРёРµ РґРµР№СЃС‚РІРёСЏ
+		cin >> action; // Считывание действия
 	}
 }
 
-// РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РћС‡РµСЂРµРґРё
+// Тестирование Очереди
 void testQueue()
 {
-	// РЎРѕРѕР±С‰РµРЅРёРµ СЃ РїРѕРґСЃРєР°Р·РєРѕР№
+	// Сообщение с подсказкой
 	const char *helpMsg = "Help message:\n\
 	put N     - put N in a Queue\n\
 	peek      - First element in the Queue\n\
@@ -294,48 +297,48 @@ void testQueue()
 	h or help - Show this message again\n\
 	q or quit - Back to Data struct menu";
 
-	Queue<int> queue; // РћС‡РµСЂРµРґСЊ С†РµР»С‹С… С‡РёСЃРµР»
-	string action = "h"; // Р”РµР№СЃС‚РІРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+	Queue<int> queue; // Очередь целых чисел
+	string action = "h"; // Действие по умолчанию
 
-	while (action != "q" && action != "quit") // РџРѕРєР° РґРµР№СЃС‚РІРёРµ РЅРµ q РёР»Рё quit
+	while (action != "q" && action != "quit") // Пока действие не q или quit
 	{
 		try
 		{
-			if (action == "put") // put - РґРѕР±Р°РІР»РµРЅРёРµ СЌР»-С‚Р° РІ РѕС‡РµСЂРµРґСЊ
+			if (action == "put") // put - добавление эл-та в очередь
 			{
-				int data; // Р­Р»-С‚ РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ
+				int data; // Эл-т для добавления
 
 				cin >> data;
-				queue.put(data); // Р”РѕР±Р°РІР»РµРЅРёРµ СЌР»-С‚Р° РІ РѕС‡РµСЂРµРґСЊ
+				queue.put(data); // Добавление эл-та в очередь
 			}
-			else if (action == "peek") // peek - РџСЂРѕСЃРјРѕС‚СЂ РїРµСЂРІРѕРіРѕ РІ РѕС‡РµСЂРµРґРё СЌР»-С‚Р°
+			else if (action == "peek") // peek - Просмотр первого в очереди эл-та
 				cout << "Output: " << queue.peek() << endl;
-			else if (action == "get") // get - Р’Р·СЏС‚РёРµ РїРµСЂРІРѕРіРѕ СЌР»-С‚Р° РёР· РѕС‡РµСЂРµРґРё
+			else if (action == "get") // get - Взятие первого эл-та из очереди
 				cout << "Output: " << queue.get() << endl;
-			else if (action == "clear") // clear - РћС‡РёСЃС‚РєР° РѕС‡РµСЂРµРґРё
+			else if (action == "clear") // clear - Очистка очереди
 				queue.clear();
-			else if (action == "h" || action == "help") // Р—Р°РїСЂРѕСЃ СЃРѕРѕР±С‰РµРЅРёСЏ СЃ РїРѕРґСЃРєР°Р·РєРѕР№
+			else if (action == "h" || action == "help") // Запрос сообщения с подсказкой
 				cout << helpMsg << endl;
-			else // РќРёС‡РµРіРѕ РёР· РІС‹С€Рµ РїРµСЂРµС‡РёСЃР»РµРЅРЅРѕРіРѕ
+			else // Ничего из выше перечисленного
 			{
-				while (cin.get() != '\n'); // РћС‡РёСЃС‚РєР° РїРѕС‚РѕРєР° РІРІРѕРґР°
+				while (cin.get() != '\n'); // Очистка потока ввода
 				cout << "Error: Unknown command. Use \"h\" or \"help\" to get help message." << endl;
 			}
 		}
-		catch (exception &e) // Р•СЃР»Рё РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР°
+		catch (exception &e) // Если возникла ошибка
 		{
 			cout << "Error: " << e.what() << endl;
 		}
 
 		cout << endl << "Input: ";
-		cin >> action; // РЎС‡РёС‚С‹РІР°РµРј РґРµР№СЃС‚РІРёРµ
+		cin >> action; // Считываем действие
 	}
 }
 
-// РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ Р”РµРєР° (РґРІРѕР№РЅРѕР№/РґРІСѓСЃС‚РѕСЂРѕРЅРЅРµР№ РѕС‡РµСЂРµРґРё)
+// Тестирование Дека (двойной/двусторонней очереди)
 void testDeque()
 {
-	// РЎРѕРѕР±С‰РµРЅРёРµ СЃ РїРѕРґСЃРєР°Р·РєРѕР№
+	// Сообщение с подсказкой
 	const char *helpMsg = "Help message:\n\
 	append     - Put element at the right end of the Deque\n\
 	appendleft - Put element at the left end of the Deque\n\
@@ -347,59 +350,59 @@ void testDeque()
 	h or help  - Show this message again\n\
 	q or quit  - Back to Data struct menu";
 
-	Deque<int> deque; // Р”РµРє С†РµР»С‹С… С‡РёСЃРµР»
-	string action = "h"; // Р”РµР№СЃС‚РІРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+	Deque<int> deque; // Дек целых чисел
+	string action = "h"; // Действие по умолчанию
 
-	while (action != "q" && action != "quit") // РџРѕРєР° РґРµР№СЃС‚РІРёРµ РЅРµ q РёР»Рё quit
+	while (action != "q" && action != "quit") // Пока действие не q или quit
 	{
 		try
 		{
-			if (action == "append") // append - Р”РѕР±Р°РІРёС‚СЊ РІ Р”РµРє СЃРїСЂР°РІР°
+			if (action == "append") // append - Добавить в Дек справа
 			{
-				int data; // Р­Р»-С‚ РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ
+				int data; // Эл-т для добавления
 
 				cin >> data;
-				deque.append(data); // Р”РѕР±Р°РІР»РµРЅРёРµ СЌР»-С‚Р° РІ РїСЂР°РІС‹Р№ РєРѕРЅРµС† РґРµРєР°
+				deque.append(data); // Добавление эл-та в правый конец дека
 			}
-			else if (action == "appendleft") // appendleft - Р”РѕР±Р°РІРёС‚СЊ РІ Р”РµРє СЃР»РµРІР°
+			else if (action == "appendleft") // appendleft - Добавить в Дек слева
 			{
-				int data; // Р­Р»-С‚Р° РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ
+				int data; // Эл-та для добавления
 
 				cin >> data;
-				deque.appendleft(data); // Р”РѕР±Р°РІР»РµРЅРёРµ СЌР»-С‚Р° РІ Р»РµРІС‹Р№ РєРѕРЅРµС† РґРµРєР°
+				deque.appendleft(data); // Добавление эл-та в левый конец дека
 			}
-			else if (action == "clear") // clear - РћС‡РёСЃС‚РєР° РґРµРєР°
+			else if (action == "clear") // clear - Очистка дека
 				deque.clear();
-			else if (action == "peek") // peek - РџСЂРѕСЃРјРѕС‚СЂ РїСЂР°РІРѕРіРѕ СЌР»-С‚Р° РґРµРєР°
+			else if (action == "peek") // peek - Просмотр правого эл-та дека
 				cout << "Output: " << deque.peek() << endl;
-			else if (action == "peekleft") // peekleft - РџСЂРѕСЃРјРѕС‚СЂ Р»РµРІРѕРіРѕ СЌР»-С‚Р° РґРµРєР°
+			else if (action == "peekleft") // peekleft - Просмотр левого эл-та дека
 				cout << "Output: " << deque.peekleft() << endl;
-			else if (action == "pop") // pop - РЈРґР°Р»РµРЅРёРµ РїСЂР°РІРѕРіРѕ СЌР»-С‚Р° РґРµРєР°
+			else if (action == "pop") // pop - Удаление правого эл-та дека
 				cout << "Output: " << deque.pop() << endl;
-			else if (action == "popleft") // popleft - РЈРґР°Р»РµРЅРёРµ Р»РµРІРѕРіРѕ СЌР»-С‚Р° РґРµРєР°
+			else if (action == "popleft") // popleft - Удаление левого эл-та дека
 				cout << "Output: " << deque.popleft() << endl;
-			else if (action == "h" || action == "help") // Р—Р°РїСЂРѕСЃ СЃРѕРѕР±С‰РµРЅРёСЏ СЃ РїРѕРґСЃРєР°Р·РєРѕР№
+			else if (action == "h" || action == "help") // Запрос сообщения с подсказкой
 				cout << helpMsg << endl;
-			else // РќРёС‡РµРіРѕ РёР· РІС‹С€Рµ РїРµСЂРµС‡РёСЃР»РµРЅРЅРѕРіРѕ
+			else // Ничего из выше перечисленного
 			{
-				while (cin.get() != '\n'); // РћС‡РёСЃС‚РєР° РїРѕС‚РѕРєР° РІРІРѕРґР°
+				while (cin.get() != '\n'); // Очистка потока ввода
 				cout << "Error: Unknown command. Use \"h\" or \"help\" to get help message." << endl;
 			}
 		}
-		catch (exception &e) // Р•СЃР»Рё РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР°
+		catch (exception &e) // Если возникла ошибка
 		{
 			cout << "Error: " << e.what() << endl;
 		}
 
 		cout << endl << "Input: ";
-		cin >> action; // РЎС‡РёС‚С‹РІР°РµРј РґРµР№СЃС‚РІРёРµ
+		cin >> action; // Считываем действие
 	}
 }
 
-// РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РђР’Р›-РґРµСЂРµРІР°
+// Тестирование АВЛ-дерева
 void testAVLTree()
 {
-	// РЎРѕРѕР±С‰РµРЅРёРµ СЃ СЃРїРёСЃРєРѕРј РґРѕРїСѓСЃС‚РёРјС‹С… РєРѕРјР°РЅРґ
+	// Сообщение с списком допустимых команд
 	char helpMsg[] = "Help message:\n\
 	append N  - Add number to AVL-Tree\n\
 	remove N  - Removing N from Tree\n\
@@ -409,54 +412,54 @@ void testAVLTree()
 	q or quit - Quit";
 
 
-	Tree<int> tree; // Р”РµСЂРµРІРѕ
-	string action = "h"; // Р”РµР№СЃС‚РІРёРµ
+	Tree<int> tree; // Дерево
+	string action = "h"; // Действие
 
-	while (action != "q" && action != "quit") // РџРѕРєР° РґРµР№СЃС‚РІРёРµ != q РёР»Рё quit (Р·Р°РІРµСЂС€РµРЅРёРµ СЂР°Р±РѕС‚С‹)
+	while (action != "q" && action != "quit") // Пока действие != q или quit (завершение работы)
 	{
-		if (action == "append") // Р”РѕР±Р°РІР»РµРЅРёРµ
+		if (action == "append") // Добавление
 		{
-			int data; // Р­Р»-С‚ РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ
+			int data; // Эл-т для добавления
 			cin >> data;
 
-			tree.append(data); // Р”РѕР±Р°РІР»РµРЅРёРµ СЌР»-С‚Р°
+			tree.append(data); // Добавление эл-та
 		}
-		else if (action == "remove") // РЈРґР°Р»РµРЅРёРµ
+		else if (action == "remove") // Удаление
 		{
-			int data; // Р­Р»-С‚Р° РґР»СЏ СѓРґР°Р»РµРЅРёСЏ
+			int data; // Эл-та для удаления
 			cin >> data;
 
-			tree.remove(data); // РЈРґР°Р»РµРЅРёСЏ СЌР»-С‚Р°
+			tree.remove(data); // Удаления эл-та
 		}
-		else if (action == "clear") // РћС‡РёСЃС‚РєР°
+		else if (action == "clear") // Очистка
 			tree.clear();
-		else if (action == "print") // Р’С‹РІРѕРґ
+		else if (action == "print") // Вывод
 		{
 			cout << "Output:" << endl << endl;
-			printTree(tree); // Р’С‹РІРѕРґ РґРµСЂРµРІР°
+			printTree(tree); // Вывод дерева
 			cout << endl;
 		}
-		else if (action == "h" || action == "help") // Р’С‹РІРѕРґ РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅРѕРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ
+		else if (action == "h" || action == "help") // Вывод вспомогательного сообщения
 			cout << helpMsg << endl;
 		else
 		{
-			while (cin.get() != '\n'); // РћС‡РёСЃС‚РєР° РїРѕС‚РѕРєР° РІРІРѕРґР°
+			while (cin.get() != '\n'); // Очистка потока ввода
 			cout << "Error: Unknown command. Use \"h\" or \"help\" to get help message." << endl;
 		}
 
 		cout << endl << "Input: ";
-		cin >> action; // РЎС‡РёС‚С‹РІР°РµРј РґРµР№СЃС‚РІРёРµ (РѕРґРЅРѕ СЃР»РѕРІРѕ)
+		cin >> action; // Считываем действие (одно слово)
 	}
 }
 
 
-// РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РџРѕР»СЊСЃРєРѕР№ РЅРѕС‚Р°С†РёРё
+// Тестирование Польской нотации
 void testPN()
 {
-	SetConsoleTitle("TEST: Polish Notation"); // Р—Р°РіРѕР»РѕРІРѕРє РєРѕРЅСЃРѕР»Рё
-	system("cls"); // РћС‡РёСЃС‚РєР° РєРѕРЅСЃРѕР»Рё
+	SetConsoleTitle("TEST: Polish Notation"); // Заголовок консоли
+	system("cls"); // Очистка консоли
 
-	// РЎРѕРѕР±С‰РµРЅРёРµ СЃ РїРѕРґСЃРєР°Р·РєРѕР№
+	// Сообщение с подсказкой
 	const char *helpMsg = "Syntax:\n\
 	Built-in Operators: + - * / ^ ( )\n\
 	Statment sin + 2 : sin - variable\n\
@@ -469,28 +472,28 @@ void testPN()
 	q or quit : Back to Main menu";
 
 
-	cin.ignore(); // РћС‡РёСЃС‚РєР° РїРѕС‚РѕРєР° РІРІРѕРґР°
-	char expr[255] = "h"; // Р’С‹СЂР°Р¶РµРЅРёРµ (РџРµСЂРІС‹Р№ СЂР°Р· РІС‹РІРµРґРµС‚СЃСЏ СЃРѕРѕР±С‰РµРЅРёРµ СЃ РїРѕРґСЃРєР°Р·РєРѕР№)
-	while (strcmp(expr, "q") && strcmp(expr, "quit")) // РџРѕРєР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РЅРµ РІРІРµР» q РёР»Рё quit
+	cin.ignore(); // Очистка потока ввода
+	char expr[255] = "h"; // Выражение (Первый раз выведется сообщение с подсказкой)
+	while (strcmp(expr, "q") && strcmp(expr, "quit")) // Пока пользователь не ввел q или quit
 	{
-		// Р’С‹РІРѕРґ СЃРѕРѕР±С‰РµРЅРёСЏ СЃ РїРѕРґСЃРєР°Р·РєРѕР№
+		// Вывод сообщения с подсказкой
 		if (!strcmp(expr, "h") || !strcmp(expr, "help"))
 			cout << helpMsg << endl << endl;
-		else if (expr[0] != '\0') // Р•СЃР»Рё РІС‹СЂР°Р¶РµРЅРёРµ РЅРµ РїСѓСЃС‚РѕРµ
+		else if (expr[0] != '\0') // Если выражение не пустое
 		{
 			cout << "Polish Notation: ";
 
 			try
 			{
-				cout << toPN(expr) << endl << endl; // РџРµСЂРµРІРѕРґ РІ РџРѕР»СЊСЃРєСѓСЋ РќРѕС‚Р°С†РёСЋ
+				cout << toPN(expr) << endl << endl; // Перевод в Польскую Нотацию
 			}
-			catch (exception &e) // Р•СЃР»Рё РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°
+			catch (exception &e) // Если произошла ошибка
 			{
-				cout << e.what() << endl << endl; // Р’С‹РІРµСЃС‚Рё РµРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ
+				cout << e.what() << endl << endl; // Вывести ее пользователю
 			}
 		}
 
 		cout << "Your expression: ";
-		cin.getline(expr, 255); // Р’С‹СЂР°Р¶РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+		cin.getline(expr, 255); // Выражение пользователя
 	}
 }
